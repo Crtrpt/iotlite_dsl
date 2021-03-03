@@ -1,14 +1,42 @@
 grammar Iotlang;
 
-prog:    (expr  | statement | NEWLINE )* ;
+prog:    statement ;
 
-statement: (assign|print|match);
+statement: ( func_return | break_statement | continue_statement |func_def | func_call | assign | expr_statement | if_statement | loop_statement | block | NEWLINE)*;
 
-match:  ((ID)(','(ID))+) '=' expr;
+func_argv: ID?|ID(','ID)+ ;
 
-assign: (varname=ID) (NEWLINE)? '=' (NEWLINE)? (val = expr|ID);
+func_def  : 'func' ID '(' func_argv ')' block ;
 
-print:  'print' (expr);
+func_call : ID '(' func_argv ')';
+
+block : '{' ( statement ) '}';
+
+func_return : 'return' (func_argv);
+
+break_statement: 'break';
+
+continue_statement : 'continue';
+
+loop_statement:
+    'while' condition_expr
+        block
+    ;
+
+if_statement :
+    'if' condition_expr
+        block
+    ('else' ( block |if_statement ))?;
+
+assign: 'let' (varname=ID)  '='  (val = expr);
+
+expr_statement:(expr|condition_expr);
+
+condition_expr:
+     left = expr op=('<'|'>'|'<='|'>='|'<>'|'==')  right = expr
+     | left = expr op=('&&'|'||')  right = expr
+     | op = '!'  right = expr
+      ;
 
 expr:    left = expr op= ('*'|'/')  right=expr #Arith
     |    left = expr op= ('+'|'-')  right=expr #Arith
@@ -17,13 +45,12 @@ expr:    left = expr op= ('*'|'/')  right=expr #Arith
     |    '(' expr ')'        #Paren
     ;
 
-//数字
-NUMBER :( DOUBLE | INT);
-
-DOUBLE : [0-9]+'.'[0-9]+'d';
-
 NEWLINE : [\r\n]+ ;
 INT     : [0-9]+ ;
-ID     : ([a-z]);
+
+ID : ID_LETTER (ID_LETTER | DIGIT)* ;
+fragment ID_LETTER : 'a'..'z' | 'A'..'Z' | '_' ;
+fragment DIGIT : '0'..'9';
+
 STRING : ('"')([a-zA-Z0-9])('"');
-Delimiter:(NEWLINE)?(',') (NEWLINE)?;
+WS      :   [ \t\n\r]+ -> skip;
