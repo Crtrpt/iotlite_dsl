@@ -1,4 +1,4 @@
-// Generated from D:/iotlang/src/main/antlr4\Iotlang.g4 by ANTLR 4.9.1
+// Generated from D:/private/iotdsl/src/main/antlr4\Iotlang.g4 by ANTLR 4.9.1
 package com.dj.iot.dsl;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -28,95 +28,45 @@ public interface IotlangListener extends ParseTreeListener {
 	 */
 	void exitStatement(IotlangParser.StatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#func_argv}.
+	 * Enter a parse tree produced by {@link IotlangParser#select_statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc_argv(IotlangParser.Func_argvContext ctx);
+	void enterSelect_statement(IotlangParser.Select_statementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#func_argv}.
+	 * Exit a parse tree produced by {@link IotlangParser#select_statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc_argv(IotlangParser.Func_argvContext ctx);
+	void exitSelect_statement(IotlangParser.Select_statementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#func_def}.
+	 * Enter a parse tree produced by {@link IotlangParser#group_argv}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc_def(IotlangParser.Func_defContext ctx);
+	void enterGroup_argv(IotlangParser.Group_argvContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#func_def}.
+	 * Exit a parse tree produced by {@link IotlangParser#group_argv}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc_def(IotlangParser.Func_defContext ctx);
+	void exitGroup_argv(IotlangParser.Group_argvContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#func_call}.
+	 * Enter a parse tree produced by {@link IotlangParser#order_argv}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc_call(IotlangParser.Func_callContext ctx);
+	void enterOrder_argv(IotlangParser.Order_argvContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#func_call}.
+	 * Exit a parse tree produced by {@link IotlangParser#order_argv}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc_call(IotlangParser.Func_callContext ctx);
+	void exitOrder_argv(IotlangParser.Order_argvContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#block}.
+	 * Enter a parse tree produced by {@link IotlangParser#order}.
 	 * @param ctx the parse tree
 	 */
-	void enterBlock(IotlangParser.BlockContext ctx);
+	void enterOrder(IotlangParser.OrderContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#block}.
+	 * Exit a parse tree produced by {@link IotlangParser#order}.
 	 * @param ctx the parse tree
 	 */
-	void exitBlock(IotlangParser.BlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IotlangParser#func_return}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunc_return(IotlangParser.Func_returnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IotlangParser#func_return}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunc_return(IotlangParser.Func_returnContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IotlangParser#break_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterBreak_statement(IotlangParser.Break_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IotlangParser#break_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitBreak_statement(IotlangParser.Break_statementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IotlangParser#continue_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterContinue_statement(IotlangParser.Continue_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IotlangParser#continue_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitContinue_statement(IotlangParser.Continue_statementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IotlangParser#loop_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterLoop_statement(IotlangParser.Loop_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IotlangParser#loop_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitLoop_statement(IotlangParser.Loop_statementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IotlangParser#if_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterIf_statement(IotlangParser.If_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IotlangParser#if_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitIf_statement(IotlangParser.If_statementContext ctx);
+	void exitOrder(IotlangParser.OrderContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IotlangParser#assign}.
 	 * @param ctx the parse tree
@@ -128,71 +78,43 @@ public interface IotlangListener extends ParseTreeListener {
 	 */
 	void exitAssign(IotlangParser.AssignContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#expr_statement}.
+	 * Enter a parse tree produced by {@link IotlangParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr_statement(IotlangParser.Expr_statementContext ctx);
+	void enterExpr(IotlangParser.ExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#expr_statement}.
+	 * Exit a parse tree produced by {@link IotlangParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr_statement(IotlangParser.Expr_statementContext ctx);
+	void exitExpr(IotlangParser.ExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#condition_expr}.
+	 * Enter a parse tree produced by {@link IotlangParser#obj_member}.
 	 * @param ctx the parse tree
 	 */
-	void enterCondition_expr(IotlangParser.Condition_exprContext ctx);
+	void enterObj_member(IotlangParser.Obj_memberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#condition_expr}.
+	 * Exit a parse tree produced by {@link IotlangParser#obj_member}.
 	 * @param ctx the parse tree
 	 */
-	void exitCondition_expr(IotlangParser.Condition_exprContext ctx);
+	void exitObj_member(IotlangParser.Obj_memberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Val}
-	 * labeled alternative in {@link IotlangParser#expr}.
+	 * Enter a parse tree produced by {@link IotlangParser#obj_method}.
 	 * @param ctx the parse tree
 	 */
-	void enterVal(IotlangParser.ValContext ctx);
+	void enterObj_method(IotlangParser.Obj_methodContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Val}
-	 * labeled alternative in {@link IotlangParser#expr}.
+	 * Exit a parse tree produced by {@link IotlangParser#obj_method}.
 	 * @param ctx the parse tree
 	 */
-	void exitVal(IotlangParser.ValContext ctx);
+	void exitObj_method(IotlangParser.Obj_methodContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Arith}
-	 * labeled alternative in {@link IotlangParser#expr}.
+	 * Enter a parse tree produced by {@link IotlangParser#method_argv}.
 	 * @param ctx the parse tree
 	 */
-	void enterArith(IotlangParser.ArithContext ctx);
+	void enterMethod_argv(IotlangParser.Method_argvContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Arith}
-	 * labeled alternative in {@link IotlangParser#expr}.
+	 * Exit a parse tree produced by {@link IotlangParser#method_argv}.
 	 * @param ctx the parse tree
 	 */
-	void exitArith(IotlangParser.ArithContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Var}
-	 * labeled alternative in {@link IotlangParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterVar(IotlangParser.VarContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Var}
-	 * labeled alternative in {@link IotlangParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitVar(IotlangParser.VarContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Paren}
-	 * labeled alternative in {@link IotlangParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterParen(IotlangParser.ParenContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Paren}
-	 * labeled alternative in {@link IotlangParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitParen(IotlangParser.ParenContext ctx);
+	void exitMethod_argv(IotlangParser.Method_argvContext ctx);
 }

@@ -14,7 +14,8 @@ public class RunUtilsTest extends TestCase {
         RunUtils.exec("./case/"+Thread.currentThread() .getStackTrace()[1].getMethodName()+".iot");
     }
 
-    public void select() throws IOException {
+    public void testselect() throws IOException {
         RunUtils.exec("./case/"+Thread.currentThread() .getStackTrace()[1].getMethodName()+".iot");
     }
+
 }

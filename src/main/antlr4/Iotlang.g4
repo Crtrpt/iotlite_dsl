@@ -2,55 +2,56 @@ grammar Iotlang;
 
 prog:    statement ;
 
-statement: ( func_return | break_statement | continue_statement |func_def | func_call | assign | expr_statement | if_statement | loop_statement | block | NEWLINE)*;
+statement: ( assign | select_statement |    obj_method | obj_member| expr | NEWLINE ) *;
 
-func_argv: ID?|ID(','ID)+ ;
+select_statement:  ('select')
+                            ('*'|ID|obj_member|obj_method)
+                   ('from') ('*'|ID|('('select_statement')'))
+                            ('where'  expr)+
+                            ('group' 'by'  group_argv)+
+                            ('order' 'by'  order_argv)+
+                            ('limit' expr','expr )+
+                            ;
 
-func_def  : 'func' ID '(' func_argv ')' block ;
+group_argv     :    ((obj_member|obj_method) (obj_member|obj_method)*)?;
 
-func_call : ID '(' func_argv ')';
+order_argv     :    ( order* );
 
-block : '{' ( statement ) '}';
+order          :    (obj_member|obj_method) ('desc'|'asc')?  ;
 
-func_return : 'return' (func_argv);
-
-break_statement: 'break';
-
-continue_statement : 'continue';
-
-loop_statement:
-    'while' condition_expr
-        block
-    ;
-
-if_statement :
-    'if' condition_expr
-        block
-    ('else' ( block |if_statement ))?;
 
 assign: 'let' (varname=ID)  '='  (val = expr);
 
-expr_statement:(expr|condition_expr);
-
-condition_expr:
-     left = expr op=('<'|'>'|'<='|'>='|'<>'|'==')  right = expr
-     | left = expr op=('&&'|'||')  right = expr
-     | op = '!'  right = expr
-      ;
-
-expr:    left = expr op= ('*'|'/')  right=expr #Arith
-    |    left = expr op= ('+'|'-')  right=expr #Arith
-    |    INT                 #Val
-    |    ID                  #Var
-    |    '(' expr ')'        #Paren
+expr:    left = expr op= ('*'|'/')  right=expr
+    |    left = expr op= ('+'|'-')  right=expr
+    |    left = expr op= ('<'|'>')  right=expr
+    |    left = expr op= ('<='|'=>')  right=expr
+    |    left = expr op= ('=='|'!=')  right=expr
+    |    STRING
+    |    NUMBER
+    |    obj_member
+    |    ID
+    |    '(' expr ')'
     ;
+
+obj_member      :   ID'.'ID;
+
+obj_method      :   ID'.'ID'(' method_argv ')';
+
+method_argv     :   (ID (',' ID)*)? ;
+
+NUMBER: (INT);
 
 NEWLINE : [\r\n]+ ;
 INT     : [0-9]+ ;
 
 ID : ID_LETTER (ID_LETTER | DIGIT)* ;
+
+STRING  : '"'([a-zA-Z0-9]+)'"';
+
 fragment ID_LETTER : 'a'..'z' | 'A'..'Z' | '_' ;
 fragment DIGIT : '0'..'9';
 
-STRING : ('"')([a-zA-Z0-9])('"');
-WS      :   [ \t\n\r]+ -> skip;
+
+
+WS      : [ \t\n\r]+ -> channel(HIDDEN);

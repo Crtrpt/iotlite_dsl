@@ -16,7 +16,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/main/antlr4/Iotlang.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="D:\iotlang\src\main\java" />
+          <option name="outputDir" value="D:\private\iotdsl\src\main\java" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="com.dj.iot.dsl" />

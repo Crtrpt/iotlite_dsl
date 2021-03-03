@@ -1,0 +1,6 @@
+select device.ctrl(name,payload)
+    from device
+    where device.name == a
+    group by device.regen  device.name
+    order by device.name device.age desc device.regen desc
+    limit 2 , 10
