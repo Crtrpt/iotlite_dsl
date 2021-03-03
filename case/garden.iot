@@ -4,3 +4,4 @@ select device.ctrl(name,payload)
     group by device.regen  device.name
     order by device.name device.age desc device.regen desc
     limit 2 , 10
+
