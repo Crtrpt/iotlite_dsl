@@ -1,0 +1,1 @@
+select *.ctrl("turn off") from device where device.name=="test"
