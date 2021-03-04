@@ -38,6 +38,26 @@ public interface IotlangListener extends ParseTreeListener {
 	 */
 	void exitSelect_statement(IotlangParser.Select_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IotlangParser#select_argv}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelect_argv(IotlangParser.Select_argvContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IotlangParser#select_argv}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelect_argv(IotlangParser.Select_argvContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IotlangParser#from_argv}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrom_argv(IotlangParser.From_argvContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IotlangParser#from_argv}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrom_argv(IotlangParser.From_argvContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IotlangParser#group_argv}.
 	 * @param ctx the parse tree
 	 */
@@ -68,6 +88,16 @@ public interface IotlangListener extends ParseTreeListener {
 	 */
 	void exitOrder(IotlangParser.OrderContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IotlangParser#limit}.
+	 * @param ctx the parse tree
+	 */
+	void enterLimit(IotlangParser.LimitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IotlangParser#limit}.
+	 * @param ctx the parse tree
+	 */
+	void exitLimit(IotlangParser.LimitContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IotlangParser#assign}.
 	 * @param ctx the parse tree
 	 */
@@ -78,15 +108,89 @@ public interface IotlangListener extends ParseTreeListener {
 	 */
 	void exitAssign(IotlangParser.AssignContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IotlangParser#expr}.
+	 * Enter a parse tree produced by the {@code ADD}
+	 * labeled alternative in {@link IotlangParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(IotlangParser.ExprContext ctx);
+	void enterADD(IotlangParser.ADDContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IotlangParser#expr}.
+	 * Exit a parse tree produced by the {@code ADD}
+	 * labeled alternative in {@link IotlangParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(IotlangParser.ExprContext ctx);
+	void exitADD(IotlangParser.ADDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_REF_OBJ_MEMBER}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_REF_OBJ_MEMBER(IotlangParser.GET_REF_OBJ_MEMBERContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_REF_OBJ_MEMBER}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_REF_OBJ_MEMBER(IotlangParser.GET_REF_OBJ_MEMBERContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_REF_STRING}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_REF_STRING(IotlangParser.GET_REF_STRINGContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_REF_STRING}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_REF_STRING(IotlangParser.GET_REF_STRINGContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_REF_NUMBER}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_REF_NUMBER(IotlangParser.GET_REF_NUMBERContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_REF_NUMBER}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_REF_NUMBER(IotlangParser.GET_REF_NUMBERContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PAREN}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPAREN(IotlangParser.PARENContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PAREN}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPAREN(IotlangParser.PARENContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_REF_BOOL}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_REF_BOOL(IotlangParser.GET_REF_BOOLContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_REF_BOOL}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_REF_BOOL(IotlangParser.GET_REF_BOOLContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_REF_ID}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_REF_ID(IotlangParser.GET_REF_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_REF_ID}
+	 * labeled alternative in {@link IotlangParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_REF_ID(IotlangParser.GET_REF_IDContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IotlangParser#obj_member}.
 	 * @param ctx the parse tree

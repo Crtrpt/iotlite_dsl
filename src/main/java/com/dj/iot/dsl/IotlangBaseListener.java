@@ -52,6 +52,30 @@ public class IotlangBaseListener implements IotlangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSelect_argv(IotlangParser.Select_argvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSelect_argv(IotlangParser.Select_argvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFrom_argv(IotlangParser.From_argvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFrom_argv(IotlangParser.From_argvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGroup_argv(IotlangParser.Group_argvContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -88,6 +112,18 @@ public class IotlangBaseListener implements IotlangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLimit(IotlangParser.LimitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLimit(IotlangParser.LimitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssign(IotlangParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -100,13 +136,85 @@ public class IotlangBaseListener implements IotlangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpr(IotlangParser.ExprContext ctx) { }
+	@Override public void enterADD(IotlangParser.ADDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpr(IotlangParser.ExprContext ctx) { }
+	@Override public void exitADD(IotlangParser.ADDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGET_REF_OBJ_MEMBER(IotlangParser.GET_REF_OBJ_MEMBERContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGET_REF_OBJ_MEMBER(IotlangParser.GET_REF_OBJ_MEMBERContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGET_REF_STRING(IotlangParser.GET_REF_STRINGContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGET_REF_STRING(IotlangParser.GET_REF_STRINGContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGET_REF_NUMBER(IotlangParser.GET_REF_NUMBERContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGET_REF_NUMBER(IotlangParser.GET_REF_NUMBERContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPAREN(IotlangParser.PARENContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPAREN(IotlangParser.PARENContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGET_REF_BOOL(IotlangParser.GET_REF_BOOLContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGET_REF_BOOL(IotlangParser.GET_REF_BOOLContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGET_REF_ID(IotlangParser.GET_REF_IDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGET_REF_ID(IotlangParser.GET_REF_IDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

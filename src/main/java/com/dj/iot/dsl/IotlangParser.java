@@ -20,25 +20,29 @@ public class IotlangParser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, NUMBER=26, HEX=27, BINARY=28, NEWLINE=29, FLOAT=30, INT=31, 
-		ID=32, STRING=33, WS=34;
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
+		NUMBER=32, BINARY=33, HEX=34, INT=35, FLOAT=36, STRING=37, BOOL=38, ID=39, 
+		NEWLINE=40, WS=41;
 	public static final int
-		RULE_prog = 0, RULE_statement = 1, RULE_select_statement = 2, RULE_group_argv = 3, 
-		RULE_order_argv = 4, RULE_order = 5, RULE_assign = 6, RULE_expr = 7, RULE_obj_member = 8, 
-		RULE_obj_method = 9, RULE_method_argv = 10;
+		RULE_prog = 0, RULE_statement = 1, RULE_select_statement = 2, RULE_select_argv = 3, 
+		RULE_from_argv = 4, RULE_group_argv = 5, RULE_order_argv = 6, RULE_order = 7, 
+		RULE_limit = 8, RULE_assign = 9, RULE_expr = 10, RULE_obj_member = 11, 
+		RULE_obj_method = 12, RULE_method_argv = 13;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"prog", "statement", "select_statement", "group_argv", "order_argv", 
-			"order", "assign", "expr", "obj_member", "obj_method", "method_argv"
+			"prog", "statement", "select_statement", "select_argv", "from_argv", 
+			"group_argv", "order_argv", "order", "limit", "assign", "expr", "obj_member", 
+			"obj_method", "method_argv"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'select'", "'*'", "'from'", "'('", "')'", "'where'", "'group'", 
-			"'by'", "'order'", "'limit'", "','", "'desc'", "'asc'", "'let'", "'='", 
-			"'/'", "'+'", "'-'", "'<'", "'>'", "'<='", "'=>'", "'=='", "'!='", "'.'"
+			null, "'select'", "'from'", "'where'", "'group'", "'by'", "'order'", 
+			"'*'", "'('", "')'", "'desc'", "'asc'", "'limit'", "','", "'let'", "'='", 
+			"'&&'", "'||'", "'/'", "'%'", "'+'", "'-'", "'<='", "'>='", "'>'", "'<'", 
+			"'=='", "'<>'", "'!='", "'&'", "'|'", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -46,8 +50,8 @@ public class IotlangParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, "NUMBER", "HEX", "BINARY", "NEWLINE", "FLOAT", "INT", "ID", 
-			"STRING", "WS"
+			null, null, null, null, null, null, null, null, "NUMBER", "BINARY", "HEX", 
+			"INT", "FLOAT", "STRING", "BOOL", "ID", "NEWLINE", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -130,7 +134,7 @@ public class IotlangParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(22);
+			setState(28);
 			statement();
 			}
 		}
@@ -146,29 +150,11 @@ public class IotlangParser extends Parser {
 	}
 
 	public static class StatementContext extends ParserRuleContext {
-		public List<AssignContext> assign() {
-			return getRuleContexts(AssignContext.class);
-		}
-		public AssignContext assign(int i) {
-			return getRuleContext(AssignContext.class,i);
-		}
 		public List<Select_statementContext> select_statement() {
 			return getRuleContexts(Select_statementContext.class);
 		}
 		public Select_statementContext select_statement(int i) {
 			return getRuleContext(Select_statementContext.class,i);
-		}
-		public List<Obj_methodContext> obj_method() {
-			return getRuleContexts(Obj_methodContext.class);
-		}
-		public Obj_methodContext obj_method(int i) {
-			return getRuleContext(Obj_methodContext.class,i);
-		}
-		public List<Obj_memberContext> obj_member() {
-			return getRuleContexts(Obj_memberContext.class);
-		}
-		public Obj_memberContext obj_member(int i) {
-			return getRuleContext(Obj_memberContext.class,i);
 		}
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -206,53 +192,41 @@ public class IotlangParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(32);
+			setState(35);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__13) | (1L << NUMBER) | (1L << NEWLINE) | (1L << ID) | (1L << STRING))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__7) | (1L << NUMBER) | (1L << STRING) | (1L << BOOL) | (1L << ID) | (1L << NEWLINE))) != 0)) {
 				{
-				setState(30);
+				setState(33);
 				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-				case 1:
+				switch (_input.LA(1)) {
+				case T__0:
 					{
-					setState(24);
-					assign();
-					}
-					break;
-				case 2:
-					{
-					setState(25);
+					setState(30);
 					select_statement();
 					}
 					break;
-				case 3:
+				case T__7:
+				case NUMBER:
+				case STRING:
+				case BOOL:
+				case ID:
 					{
-					setState(26);
-					obj_method();
-					}
-					break;
-				case 4:
-					{
-					setState(27);
-					obj_member();
-					}
-					break;
-				case 5:
-					{
-					setState(28);
+					setState(31);
 					expr(0);
 					}
 					break;
-				case 6:
+				case NEWLINE:
 					{
-					setState(29);
+					setState(32);
 					match(NEWLINE);
 					}
 					break;
+				default:
+					throw new NoViableAltException(this);
 				}
 				}
-				setState(34);
+				setState(37);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -270,15 +244,20 @@ public class IotlangParser extends Parser {
 	}
 
 	public static class Select_statementContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(IotlangParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(IotlangParser.ID, i);
+		public Select_argvContext select_body;
+		public From_argvContext from_body;
+		public ExprContext where_body;
+		public Group_argvContext group_body;
+		public Order_argvContext order_body;
+		public LimitContext limit_body;
+		public Select_argvContext select_argv() {
+			return getRuleContext(Select_argvContext.class,0);
 		}
-		public Obj_memberContext obj_member() {
-			return getRuleContext(Obj_memberContext.class,0);
+		public From_argvContext from_argv() {
+			return getRuleContext(From_argvContext.class,0);
 		}
-		public Obj_methodContext obj_method() {
-			return getRuleContext(Obj_methodContext.class,0);
+		public LimitContext limit() {
+			return getRuleContext(LimitContext.class,0);
 		}
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -297,9 +276,6 @@ public class IotlangParser extends Parser {
 		}
 		public Order_argvContext order_argv(int i) {
 			return getRuleContext(Order_argvContext.class,i);
-		}
-		public Select_statementContext select_statement() {
-			return getRuleContext(Select_statementContext.class,0);
 		}
 		public Select_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -328,143 +304,218 @@ public class IotlangParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(35);
+			setState(38);
 			match(T__0);
 			}
+			setState(39);
+			((Select_statementContext)_localctx).select_body = select_argv();
+			{
 			setState(40);
+			match(T__1);
+			}
+			setState(41);
+			((Select_statementContext)_localctx).from_body = from_argv();
+			setState(44); 
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(42);
+				match(T__2);
+				setState(43);
+				((Select_statementContext)_localctx).where_body = expr(0);
+				}
+				}
+				setState(46); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==T__2 );
+			setState(51); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(48);
+				match(T__3);
+				setState(49);
+				match(T__4);
+				setState(50);
+				((Select_statementContext)_localctx).group_body = group_argv();
+				}
+				}
+				setState(53); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==T__3 );
+			setState(58); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(55);
+				match(T__5);
+				setState(56);
+				match(T__4);
+				setState(57);
+				((Select_statementContext)_localctx).order_body = order_argv();
+				}
+				}
+				setState(60); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==T__5 );
+			setState(62);
+			((Select_statementContext)_localctx).limit_body = limit();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Select_argvContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(IotlangParser.ID, 0); }
+		public Obj_memberContext obj_member() {
+			return getRuleContext(Obj_memberContext.class,0);
+		}
+		public Obj_methodContext obj_method() {
+			return getRuleContext(Obj_methodContext.class,0);
+		}
+		public Select_argvContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_select_argv; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterSelect_argv(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitSelect_argv(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitSelect_argv(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Select_argvContext select_argv() throws RecognitionException {
+		Select_argvContext _localctx = new Select_argvContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_select_argv);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(68);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				{
-				setState(36);
-				match(T__1);
+				setState(64);
+				match(T__6);
 				}
 				break;
 			case 2:
 				{
-				setState(37);
+				setState(65);
 				match(ID);
 				}
 				break;
 			case 3:
 				{
-				setState(38);
+				setState(66);
 				obj_member();
 				}
 				break;
 			case 4:
 				{
-				setState(39);
+				setState(67);
 				obj_method();
 				}
 				break;
 			}
-			{
-			setState(42);
-			match(T__2);
 			}
-			setState(49);
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class From_argvContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(IotlangParser.ID, 0); }
+		public Select_statementContext select_statement() {
+			return getRuleContext(Select_statementContext.class,0);
+		}
+		public From_argvContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_from_argv; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterFrom_argv(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitFrom_argv(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitFrom_argv(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final From_argvContext from_argv() throws RecognitionException {
+		From_argvContext _localctx = new From_argvContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_from_argv);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(76);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__1:
+			case T__6:
 				{
-				setState(43);
-				match(T__1);
+				setState(70);
+				match(T__6);
 				}
 				break;
 			case ID:
 				{
-				setState(44);
+				setState(71);
 				match(ID);
 				}
 				break;
-			case T__3:
+			case T__7:
 				{
 				{
-				setState(45);
-				match(T__3);
-				setState(46);
+				setState(72);
+				match(T__7);
+				setState(73);
 				select_statement();
-				setState(47);
-				match(T__4);
+				setState(74);
+				match(T__8);
 				}
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(53); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(51);
-				match(T__5);
-				setState(52);
-				expr(0);
-				}
-				}
-				setState(55); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==T__5 );
-			setState(60); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(57);
-				match(T__6);
-				setState(58);
-				match(T__7);
-				setState(59);
-				group_argv();
-				}
-				}
-				setState(62); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==T__6 );
-			setState(67); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(64);
-				match(T__8);
-				setState(65);
-				match(T__7);
-				setState(66);
-				order_argv();
-				}
-				}
-				setState(69); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==T__8 );
-			setState(76); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(71);
-				match(T__9);
-				setState(72);
-				expr(0);
-				setState(73);
-				match(T__10);
-				setState(74);
-				expr(0);
-				}
-				}
-				setState(78); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==T__9 );
 			}
 		}
 		catch (RecognitionException re) {
@@ -512,55 +563,55 @@ public class IotlangParser extends Parser {
 
 	public final Group_argvContext group_argv() throws RecognitionException {
 		Group_argvContext _localctx = new Group_argvContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_group_argv);
+		enterRule(_localctx, 10, RULE_group_argv);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(91);
+			setState(89);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ID) {
 				{
-				setState(82);
+				setState(80);
 				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+				switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 				case 1:
 					{
-					setState(80);
+					setState(78);
 					obj_member();
 					}
 					break;
 				case 2:
 					{
-					setState(81);
+					setState(79);
 					obj_method();
 					}
 					break;
 				}
-				setState(88);
+				setState(86);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==ID) {
 					{
-					setState(86);
+					setState(84);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 					case 1:
 						{
-						setState(84);
+						setState(82);
 						obj_member();
 						}
 						break;
 					case 2:
 						{
-						setState(85);
+						setState(83);
 						obj_method();
 						}
 						break;
 					}
 					}
-					setState(90);
+					setState(88);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -608,23 +659,23 @@ public class IotlangParser extends Parser {
 
 	public final Order_argvContext order_argv() throws RecognitionException {
 		Order_argvContext _localctx = new Order_argvContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_order_argv);
+		enterRule(_localctx, 12, RULE_order_argv);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(96);
+			setState(94);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==ID) {
 				{
 				{
-				setState(93);
+				setState(91);
 				order();
 				}
 				}
-				setState(98);
+				setState(96);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -670,35 +721,35 @@ public class IotlangParser extends Parser {
 
 	public final OrderContext order() throws RecognitionException {
 		OrderContext _localctx = new OrderContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_order);
+		enterRule(_localctx, 14, RULE_order);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(99);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				{
-				setState(99);
+				setState(97);
 				obj_member();
 				}
 				break;
 			case 2:
 				{
-				setState(100);
+				setState(98);
 				obj_method();
 				}
 				break;
 			}
-			setState(104);
+			setState(102);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__11 || _la==T__12) {
+			if (_la==T__9 || _la==T__10) {
 				{
-				setState(103);
+				setState(101);
 				_la = _input.LA(1);
-				if ( !(_la==T__11 || _la==T__12) ) {
+				if ( !(_la==T__9 || _la==T__10) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -709,6 +760,74 @@ public class IotlangParser extends Parser {
 				}
 			}
 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class LimitContext extends ParserRuleContext {
+		public ExprContext offset_argv;
+		public ExprContext limit_argv;
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public LimitContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_limit; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterLimit(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitLimit(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitLimit(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final LimitContext limit() throws RecognitionException {
+		LimitContext _localctx = new LimitContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_limit);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(109); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(104);
+				match(T__11);
+				setState(105);
+				((LimitContext)_localctx).offset_argv = expr(0);
+				setState(106);
+				match(T__12);
+				setState(107);
+				((LimitContext)_localctx).limit_argv = expr(0);
+				}
+				}
+				setState(111); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==T__11 );
 			}
 		}
 		catch (RecognitionException re) {
@@ -750,20 +869,20 @@ public class IotlangParser extends Parser {
 
 	public final AssignContext assign() throws RecognitionException {
 		AssignContext _localctx = new AssignContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_assign);
+		enterRule(_localctx, 18, RULE_assign);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(106);
+			setState(113);
 			match(T__13);
 			{
-			setState(107);
+			setState(114);
 			((AssignContext)_localctx).varname = match(ID);
 			}
-			setState(108);
+			setState(115);
 			match(T__14);
 			{
-			setState(109);
+			setState(116);
 			((AssignContext)_localctx).val = expr(0);
 			}
 			}
@@ -780,36 +899,144 @@ public class IotlangParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
+		public ExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr; }
+	 
+		public ExprContext() { }
+		public void copyFrom(ExprContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class ADDContext extends ExprContext {
 		public ExprContext left;
 		public Token op;
 		public ExprContext right;
-		public TerminalNode STRING() { return getToken(IotlangParser.STRING, 0); }
-		public TerminalNode NUMBER() { return getToken(IotlangParser.NUMBER, 0); }
-		public Obj_memberContext obj_member() {
-			return getRuleContext(Obj_memberContext.class,0);
-		}
-		public TerminalNode ID() { return getToken(IotlangParser.ID, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public ExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_expr; }
+		public ADDContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterExpr(this);
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterADD(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitExpr(this);
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitADD(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitExpr(this);
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitADD(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GET_REF_OBJ_MEMBERContext extends ExprContext {
+		public Obj_memberContext obj_member() {
+			return getRuleContext(Obj_memberContext.class,0);
+		}
+		public GET_REF_OBJ_MEMBERContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterGET_REF_OBJ_MEMBER(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitGET_REF_OBJ_MEMBER(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitGET_REF_OBJ_MEMBER(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GET_REF_STRINGContext extends ExprContext {
+		public TerminalNode STRING() { return getToken(IotlangParser.STRING, 0); }
+		public GET_REF_STRINGContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterGET_REF_STRING(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitGET_REF_STRING(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitGET_REF_STRING(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GET_REF_NUMBERContext extends ExprContext {
+		public TerminalNode NUMBER() { return getToken(IotlangParser.NUMBER, 0); }
+		public GET_REF_NUMBERContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterGET_REF_NUMBER(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitGET_REF_NUMBER(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitGET_REF_NUMBER(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class PARENContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public PARENContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterPAREN(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitPAREN(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitPAREN(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GET_REF_BOOLContext extends ExprContext {
+		public TerminalNode BOOL() { return getToken(IotlangParser.BOOL, 0); }
+		public GET_REF_BOOLContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterGET_REF_BOOL(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitGET_REF_BOOL(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitGET_REF_BOOL(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GET_REF_IDContext extends ExprContext {
+		public TerminalNode ID() { return getToken(IotlangParser.ID, 0); }
+		public GET_REF_IDContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).enterGET_REF_ID(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof IotlangListener ) ((IotlangListener)listener).exitGET_REF_ID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof IotlangVisitor ) return ((IotlangVisitor<? extends T>)visitor).visitGET_REF_ID(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -823,53 +1050,78 @@ public class IotlangParser extends Parser {
 		int _parentState = getState();
 		ExprContext _localctx = new ExprContext(_ctx, _parentState);
 		ExprContext _prevctx = _localctx;
-		int _startState = 14;
-		enterRecursionRule(_localctx, 14, RULE_expr, _p);
+		int _startState = 20;
+		enterRecursionRule(_localctx, 20, RULE_expr, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(120);
+			setState(128);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				{
-				setState(112);
-				match(STRING);
+				_localctx = new GET_REF_NUMBERContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+
+				setState(119);
+				match(NUMBER);
 				}
 				break;
 			case 2:
 				{
-				setState(113);
-				match(NUMBER);
+				_localctx = new GET_REF_BOOLContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(120);
+				match(BOOL);
 				}
 				break;
 			case 3:
 				{
-				setState(114);
-				obj_member();
+				_localctx = new GET_REF_STRINGContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(121);
+				match(STRING);
 				}
 				break;
 			case 4:
 				{
-				setState(115);
+				_localctx = new GET_REF_IDContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(122);
 				match(ID);
 				}
 				break;
 			case 5:
 				{
-				setState(116);
-				match(T__3);
-				setState(117);
+				_localctx = new GET_REF_OBJ_MEMBERContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(123);
+				obj_member();
+				}
+				break;
+			case 6:
+				{
+				_localctx = new PARENContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(124);
+				match(T__7);
+				setState(125);
 				expr(0);
-				setState(118);
-				match(T__4);
+				setState(126);
+				match(T__8);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(139);
+			setState(147);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -877,128 +1129,123 @@ public class IotlangParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(137);
+					setState(145);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 					case 1:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.left = _prevctx;
-						_localctx.left = _prevctx;
+						_localctx = new ADDContext(new ExprContext(_parentctx, _parentState));
+						((ADDContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(122);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(123);
-						((ExprContext)_localctx).op = _input.LT(1);
+						setState(130);
+						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+						setState(131);
+						((ADDContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__1 || _la==T__15) ) {
-							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==T__15 || _la==T__16) ) {
+							((ADDContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(124);
-						((ExprContext)_localctx).right = expr(11);
+						setState(132);
+						((ADDContext)_localctx).right = expr(12);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.left = _prevctx;
-						_localctx.left = _prevctx;
+						_localctx = new ADDContext(new ExprContext(_parentctx, _parentState));
+						((ADDContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(125);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(126);
-						((ExprContext)_localctx).op = _input.LT(1);
+						setState(133);
+						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
+						setState(134);
+						((ADDContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__16 || _la==T__17) ) {
-							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__17) | (1L << T__18))) != 0)) ) {
+							((ADDContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(127);
-						((ExprContext)_localctx).right = expr(10);
+						setState(135);
+						((ADDContext)_localctx).right = expr(11);
 						}
 						break;
 					case 3:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.left = _prevctx;
-						_localctx.left = _prevctx;
+						_localctx = new ADDContext(new ExprContext(_parentctx, _parentState));
+						((ADDContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(128);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(129);
-						((ExprContext)_localctx).op = _input.LT(1);
+						setState(136);
+						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
+						setState(137);
+						((ADDContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__18 || _la==T__19) ) {
-							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==T__19 || _la==T__20) ) {
+							((ADDContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(130);
-						((ExprContext)_localctx).right = expr(9);
+						setState(138);
+						((ADDContext)_localctx).right = expr(10);
 						}
 						break;
 					case 4:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.left = _prevctx;
-						_localctx.left = _prevctx;
+						_localctx = new ADDContext(new ExprContext(_parentctx, _parentState));
+						((ADDContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(131);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(132);
-						((ExprContext)_localctx).op = _input.LT(1);
+						setState(139);
+						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
+						setState(140);
+						((ADDContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__20 || _la==T__21) ) {
-							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27))) != 0)) ) {
+							((ADDContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(133);
-						((ExprContext)_localctx).right = expr(8);
+						setState(141);
+						((ADDContext)_localctx).right = expr(9);
 						}
 						break;
 					case 5:
 						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.left = _prevctx;
-						_localctx.left = _prevctx;
+						_localctx = new ADDContext(new ExprContext(_parentctx, _parentState));
+						((ADDContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(134);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(135);
-						((ExprContext)_localctx).op = _input.LT(1);
+						setState(142);
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						setState(143);
+						((ADDContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__22 || _la==T__23) ) {
-							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==T__28 || _la==T__29) ) {
+							((ADDContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(136);
-						((ExprContext)_localctx).right = expr(7);
+						setState(144);
+						((ADDContext)_localctx).right = expr(8);
 						}
 						break;
 					}
 					} 
 				}
-				setState(141);
+				setState(149);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
 			}
@@ -1016,6 +1263,8 @@ public class IotlangParser extends Parser {
 	}
 
 	public static class Obj_memberContext extends ParserRuleContext {
+		public Token instance;
+		public Token member;
 		public List<TerminalNode> ID() { return getTokens(IotlangParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(IotlangParser.ID, i);
@@ -1041,16 +1290,16 @@ public class IotlangParser extends Parser {
 
 	public final Obj_memberContext obj_member() throws RecognitionException {
 		Obj_memberContext _localctx = new Obj_memberContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_obj_member);
+		enterRule(_localctx, 22, RULE_obj_member);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(142);
-			match(ID);
-			setState(143);
-			match(T__24);
-			setState(144);
-			match(ID);
+			setState(150);
+			((Obj_memberContext)_localctx).instance = match(ID);
+			setState(151);
+			match(T__30);
+			setState(152);
+			((Obj_memberContext)_localctx).member = match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1065,6 +1314,9 @@ public class IotlangParser extends Parser {
 	}
 
 	public static class Obj_methodContext extends ParserRuleContext {
+		public Token instance;
+		public Token method;
+		public Method_argvContext argv;
 		public List<TerminalNode> ID() { return getTokens(IotlangParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(IotlangParser.ID, i);
@@ -1093,22 +1345,22 @@ public class IotlangParser extends Parser {
 
 	public final Obj_methodContext obj_method() throws RecognitionException {
 		Obj_methodContext _localctx = new Obj_methodContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_obj_method);
+		enterRule(_localctx, 24, RULE_obj_method);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(146);
-			match(ID);
-			setState(147);
-			match(T__24);
-			setState(148);
-			match(ID);
-			setState(149);
-			match(T__3);
-			setState(150);
-			method_argv();
-			setState(151);
-			match(T__4);
+			setState(154);
+			((Obj_methodContext)_localctx).instance = match(ID);
+			setState(155);
+			match(T__30);
+			setState(156);
+			((Obj_methodContext)_localctx).method = match(ID);
+			setState(157);
+			match(T__7);
+			setState(158);
+			((Obj_methodContext)_localctx).argv = method_argv();
+			setState(159);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1148,31 +1400,31 @@ public class IotlangParser extends Parser {
 
 	public final Method_argvContext method_argv() throws RecognitionException {
 		Method_argvContext _localctx = new Method_argvContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_method_argv);
+		enterRule(_localctx, 26, RULE_method_argv);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(161);
+			setState(169);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ID) {
 				{
-				setState(153);
+				setState(161);
 				match(ID);
-				setState(158);
+				setState(166);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__10) {
+				while (_la==T__12) {
 					{
 					{
-					setState(154);
-					match(T__10);
-					setState(155);
+					setState(162);
+					match(T__12);
+					setState(163);
 					match(ID);
 					}
 					}
-					setState(160);
+					setState(168);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -1194,7 +1446,7 @@ public class IotlangParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 7:
+		case 10:
 			return expr_sempred((ExprContext)_localctx, predIndex);
 		}
 		return true;
@@ -1202,69 +1454,72 @@ public class IotlangParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 10);
+			return precpred(_ctx, 11);
 		case 1:
-			return precpred(_ctx, 9);
+			return precpred(_ctx, 10);
 		case 2:
-			return precpred(_ctx, 8);
+			return precpred(_ctx, 9);
 		case 3:
-			return precpred(_ctx, 7);
+			return precpred(_ctx, 8);
 		case 4:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 7);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3$\u00a6\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3+\u00ae\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3"+
-		"\4\3\4\3\4\3\4\3\4\5\4+\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\64\n\4\3\4"+
-		"\3\4\6\48\n\4\r\4\16\49\3\4\3\4\3\4\6\4?\n\4\r\4\16\4@\3\4\3\4\3\4\6\4"+
-		"F\n\4\r\4\16\4G\3\4\3\4\3\4\3\4\3\4\6\4O\n\4\r\4\16\4P\3\5\3\5\5\5U\n"+
-		"\5\3\5\3\5\7\5Y\n\5\f\5\16\5\\\13\5\5\5^\n\5\3\6\7\6a\n\6\f\6\16\6d\13"+
-		"\6\3\7\3\7\5\7h\n\7\3\7\5\7k\n\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\3\t\5\t{\n\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\3\t\7\t\u008c\n\t\f\t\16\t\u008f\13\t\3\n\3\n\3\n\3\n\3"+
-		"\13\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\7\f\u009f\n\f\f\f\16\f\u00a2"+
-		"\13\f\5\f\u00a4\n\f\3\f\2\3\20\r\2\4\6\b\n\f\16\20\22\24\26\2\b\3\2\16"+
-		"\17\4\2\4\4\22\22\3\2\23\24\3\2\25\26\3\2\27\30\3\2\31\32\2\u00bb\2\30"+
-		"\3\2\2\2\4\"\3\2\2\2\6%\3\2\2\2\b]\3\2\2\2\nb\3\2\2\2\fg\3\2\2\2\16l\3"+
-		"\2\2\2\20z\3\2\2\2\22\u0090\3\2\2\2\24\u0094\3\2\2\2\26\u00a3\3\2\2\2"+
-		"\30\31\5\4\3\2\31\3\3\2\2\2\32!\5\16\b\2\33!\5\6\4\2\34!\5\24\13\2\35"+
-		"!\5\22\n\2\36!\5\20\t\2\37!\7\37\2\2 \32\3\2\2\2 \33\3\2\2\2 \34\3\2\2"+
-		"\2 \35\3\2\2\2 \36\3\2\2\2 \37\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2"+
-		"#\5\3\2\2\2$\"\3\2\2\2%*\7\3\2\2&+\7\4\2\2\'+\7\"\2\2(+\5\22\n\2)+\5\24"+
-		"\13\2*&\3\2\2\2*\'\3\2\2\2*(\3\2\2\2*)\3\2\2\2+,\3\2\2\2,\63\7\5\2\2-"+
-		"\64\7\4\2\2.\64\7\"\2\2/\60\7\6\2\2\60\61\5\6\4\2\61\62\7\7\2\2\62\64"+
-		"\3\2\2\2\63-\3\2\2\2\63.\3\2\2\2\63/\3\2\2\2\64\67\3\2\2\2\65\66\7\b\2"+
-		"\2\668\5\20\t\2\67\65\3\2\2\289\3\2\2\29\67\3\2\2\29:\3\2\2\2:>\3\2\2"+
-		"\2;<\7\t\2\2<=\7\n\2\2=?\5\b\5\2>;\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2"+
-		"\2AE\3\2\2\2BC\7\13\2\2CD\7\n\2\2DF\5\n\6\2EB\3\2\2\2FG\3\2\2\2GE\3\2"+
-		"\2\2GH\3\2\2\2HN\3\2\2\2IJ\7\f\2\2JK\5\20\t\2KL\7\r\2\2LM\5\20\t\2MO\3"+
-		"\2\2\2NI\3\2\2\2OP\3\2\2\2PN\3\2\2\2PQ\3\2\2\2Q\7\3\2\2\2RU\5\22\n\2S"+
-		"U\5\24\13\2TR\3\2\2\2TS\3\2\2\2UZ\3\2\2\2VY\5\22\n\2WY\5\24\13\2XV\3\2"+
-		"\2\2XW\3\2\2\2Y\\\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[^\3\2\2\2\\Z\3\2\2\2]T\3"+
-		"\2\2\2]^\3\2\2\2^\t\3\2\2\2_a\5\f\7\2`_\3\2\2\2ad\3\2\2\2b`\3\2\2\2bc"+
-		"\3\2\2\2c\13\3\2\2\2db\3\2\2\2eh\5\22\n\2fh\5\24\13\2ge\3\2\2\2gf\3\2"+
-		"\2\2hj\3\2\2\2ik\t\2\2\2ji\3\2\2\2jk\3\2\2\2k\r\3\2\2\2lm\7\20\2\2mn\7"+
-		"\"\2\2no\7\21\2\2op\5\20\t\2p\17\3\2\2\2qr\b\t\1\2r{\7#\2\2s{\7\34\2\2"+
-		"t{\5\22\n\2u{\7\"\2\2vw\7\6\2\2wx\5\20\t\2xy\7\7\2\2y{\3\2\2\2zq\3\2\2"+
-		"\2zs\3\2\2\2zt\3\2\2\2zu\3\2\2\2zv\3\2\2\2{\u008d\3\2\2\2|}\f\f\2\2}~"+
-		"\t\3\2\2~\u008c\5\20\t\r\177\u0080\f\13\2\2\u0080\u0081\t\4\2\2\u0081"+
-		"\u008c\5\20\t\f\u0082\u0083\f\n\2\2\u0083\u0084\t\5\2\2\u0084\u008c\5"+
-		"\20\t\13\u0085\u0086\f\t\2\2\u0086\u0087\t\6\2\2\u0087\u008c\5\20\t\n"+
-		"\u0088\u0089\f\b\2\2\u0089\u008a\t\7\2\2\u008a\u008c\5\20\t\t\u008b|\3"+
-		"\2\2\2\u008b\177\3\2\2\2\u008b\u0082\3\2\2\2\u008b\u0085\3\2\2\2\u008b"+
-		"\u0088\3\2\2\2\u008c\u008f\3\2\2\2\u008d\u008b\3\2\2\2\u008d\u008e\3\2"+
-		"\2\2\u008e\21\3\2\2\2\u008f\u008d\3\2\2\2\u0090\u0091\7\"\2\2\u0091\u0092"+
-		"\7\33\2\2\u0092\u0093\7\"\2\2\u0093\23\3\2\2\2\u0094\u0095\7\"\2\2\u0095"+
-		"\u0096\7\33\2\2\u0096\u0097\7\"\2\2\u0097\u0098\7\6\2\2\u0098\u0099\5"+
-		"\26\f\2\u0099\u009a\7\7\2\2\u009a\25\3\2\2\2\u009b\u00a0\7\"\2\2\u009c"+
-		"\u009d\7\r\2\2\u009d\u009f\7\"\2\2\u009e\u009c\3\2\2\2\u009f\u00a2\3\2"+
-		"\2\2\u00a0\u009e\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a4\3\2\2\2\u00a2"+
-		"\u00a0\3\2\2\2\u00a3\u009b\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4\27\3\2\2"+
-		"\2\26 \"*\639@GPTXZ]bgjz\u008b\u008d\u00a0\u00a3";
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\3\2\3\3\3\3\3\3\7\3$\n\3\f"+
+		"\3\16\3\'\13\3\3\4\3\4\3\4\3\4\3\4\3\4\6\4/\n\4\r\4\16\4\60\3\4\3\4\3"+
+		"\4\6\4\66\n\4\r\4\16\4\67\3\4\3\4\3\4\6\4=\n\4\r\4\16\4>\3\4\3\4\3\5\3"+
+		"\5\3\5\3\5\5\5G\n\5\3\6\3\6\3\6\3\6\3\6\3\6\5\6O\n\6\3\7\3\7\5\7S\n\7"+
+		"\3\7\3\7\7\7W\n\7\f\7\16\7Z\13\7\5\7\\\n\7\3\b\7\b_\n\b\f\b\16\bb\13\b"+
+		"\3\t\3\t\5\tf\n\t\3\t\5\ti\n\t\3\n\3\n\3\n\3\n\3\n\6\np\n\n\r\n\16\nq"+
+		"\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f"+
+		"\u0083\n\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f"+
+		"\7\f\u0094\n\f\f\f\16\f\u0097\13\f\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16"+
+		"\3\16\3\16\3\16\3\17\3\17\3\17\7\17\u00a7\n\17\f\17\16\17\u00aa\13\17"+
+		"\5\17\u00ac\n\17\3\17\2\3\26\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2"+
+		"\b\3\2\f\r\3\2\22\23\4\2\t\t\24\25\3\2\26\27\3\2\30\36\3\2\37 \2\u00be"+
+		"\2\36\3\2\2\2\4%\3\2\2\2\6(\3\2\2\2\bF\3\2\2\2\nN\3\2\2\2\f[\3\2\2\2\16"+
+		"`\3\2\2\2\20e\3\2\2\2\22o\3\2\2\2\24s\3\2\2\2\26\u0082\3\2\2\2\30\u0098"+
+		"\3\2\2\2\32\u009c\3\2\2\2\34\u00ab\3\2\2\2\36\37\5\4\3\2\37\3\3\2\2\2"+
+		" $\5\6\4\2!$\5\26\f\2\"$\7*\2\2# \3\2\2\2#!\3\2\2\2#\"\3\2\2\2$\'\3\2"+
+		"\2\2%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'%\3\2\2\2()\7\3\2\2)*\5\b\5\2*+\7"+
+		"\4\2\2+.\5\n\6\2,-\7\5\2\2-/\5\26\f\2.,\3\2\2\2/\60\3\2\2\2\60.\3\2\2"+
+		"\2\60\61\3\2\2\2\61\65\3\2\2\2\62\63\7\6\2\2\63\64\7\7\2\2\64\66\5\f\7"+
+		"\2\65\62\3\2\2\2\66\67\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28<\3\2\2\29:\7"+
+		"\b\2\2:;\7\7\2\2;=\5\16\b\2<9\3\2\2\2=>\3\2\2\2><\3\2\2\2>?\3\2\2\2?@"+
+		"\3\2\2\2@A\5\22\n\2A\7\3\2\2\2BG\7\t\2\2CG\7)\2\2DG\5\30\r\2EG\5\32\16"+
+		"\2FB\3\2\2\2FC\3\2\2\2FD\3\2\2\2FE\3\2\2\2G\t\3\2\2\2HO\7\t\2\2IO\7)\2"+
+		"\2JK\7\n\2\2KL\5\6\4\2LM\7\13\2\2MO\3\2\2\2NH\3\2\2\2NI\3\2\2\2NJ\3\2"+
+		"\2\2O\13\3\2\2\2PS\5\30\r\2QS\5\32\16\2RP\3\2\2\2RQ\3\2\2\2SX\3\2\2\2"+
+		"TW\5\30\r\2UW\5\32\16\2VT\3\2\2\2VU\3\2\2\2WZ\3\2\2\2XV\3\2\2\2XY\3\2"+
+		"\2\2Y\\\3\2\2\2ZX\3\2\2\2[R\3\2\2\2[\\\3\2\2\2\\\r\3\2\2\2]_\5\20\t\2"+
+		"^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2a\17\3\2\2\2b`\3\2\2\2cf\5\30"+
+		"\r\2df\5\32\16\2ec\3\2\2\2ed\3\2\2\2fh\3\2\2\2gi\t\2\2\2hg\3\2\2\2hi\3"+
+		"\2\2\2i\21\3\2\2\2jk\7\16\2\2kl\5\26\f\2lm\7\17\2\2mn\5\26\f\2np\3\2\2"+
+		"\2oj\3\2\2\2pq\3\2\2\2qo\3\2\2\2qr\3\2\2\2r\23\3\2\2\2st\7\20\2\2tu\7"+
+		")\2\2uv\7\21\2\2vw\5\26\f\2w\25\3\2\2\2xy\b\f\1\2y\u0083\7\"\2\2z\u0083"+
+		"\7(\2\2{\u0083\7\'\2\2|\u0083\7)\2\2}\u0083\5\30\r\2~\177\7\n\2\2\177"+
+		"\u0080\5\26\f\2\u0080\u0081\7\13\2\2\u0081\u0083\3\2\2\2\u0082x\3\2\2"+
+		"\2\u0082z\3\2\2\2\u0082{\3\2\2\2\u0082|\3\2\2\2\u0082}\3\2\2\2\u0082~"+
+		"\3\2\2\2\u0083\u0095\3\2\2\2\u0084\u0085\f\r\2\2\u0085\u0086\t\3\2\2\u0086"+
+		"\u0094\5\26\f\16\u0087\u0088\f\f\2\2\u0088\u0089\t\4\2\2\u0089\u0094\5"+
+		"\26\f\r\u008a\u008b\f\13\2\2\u008b\u008c\t\5\2\2\u008c\u0094\5\26\f\f"+
+		"\u008d\u008e\f\n\2\2\u008e\u008f\t\6\2\2\u008f\u0094\5\26\f\13\u0090\u0091"+
+		"\f\t\2\2\u0091\u0092\t\7\2\2\u0092\u0094\5\26\f\n\u0093\u0084\3\2\2\2"+
+		"\u0093\u0087\3\2\2\2\u0093\u008a\3\2\2\2\u0093\u008d\3\2\2\2\u0093\u0090"+
+		"\3\2\2\2\u0094\u0097\3\2\2\2\u0095\u0093\3\2\2\2\u0095\u0096\3\2\2\2\u0096"+
+		"\27\3\2\2\2\u0097\u0095\3\2\2\2\u0098\u0099\7)\2\2\u0099\u009a\7!\2\2"+
+		"\u009a\u009b\7)\2\2\u009b\31\3\2\2\2\u009c\u009d\7)\2\2\u009d\u009e\7"+
+		"!\2\2\u009e\u009f\7)\2\2\u009f\u00a0\7\n\2\2\u00a0\u00a1\5\34\17\2\u00a1"+
+		"\u00a2\7\13\2\2\u00a2\33\3\2\2\2\u00a3\u00a8\7)\2\2\u00a4\u00a5\7\17\2"+
+		"\2\u00a5\u00a7\7)\2\2\u00a6\u00a4\3\2\2\2\u00a7\u00aa\3\2\2\2\u00a8\u00a6"+
+		"\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00ac\3\2\2\2\u00aa\u00a8\3\2\2\2\u00ab"+
+		"\u00a3\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\35\3\2\2\2\26#%\60\67>FNRVX["+
+		"`ehq\u0082\u0093\u0095\u00a8\u00ab";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

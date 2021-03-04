@@ -1,7 +1,6 @@
 select device.ctrl(name,payload)
     from device
-    where device.name == a
-    group by device.regen  device.name
-    order by device.name device.age desc device.regen desc
-    limit 2 , 10
-
+    where ( device.name == "xx0" ) && ( device.humidity ==200 )
+    group by device.name
+    order by device.name desc
+    limit 0,10
